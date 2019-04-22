@@ -35,6 +35,8 @@
       <!-- <HelloWorld/> -->
       <!-- <LeaderBoard /> -->
       <router-view></router-view>
+      <LeaderBoard />
+      <quiz/>
     </v-content>
   </v-app>
 </template>
@@ -42,6 +44,7 @@
 <script>
 import HelloWorld from "./components/HelloWorld";
 import LeaderBoard from "./components/LeaderBoard";
+import quiz from './components/quiz.vue';
 import swal from "sweetalert";
 import firebase from "firebase";
 import { mapState } from "vuex";
@@ -50,7 +53,8 @@ export default {
   name: "App",
   components: {
     HelloWorld,
-    LeaderBoard
+    LeaderBoard,
+    quiz,
   },
   data() {
     return {

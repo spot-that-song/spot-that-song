@@ -18,6 +18,7 @@
     <v-content>
       <!-- <HelloWorld/> -->
       <LeaderBoard />
+      <quiz/>
     </v-content>
   </v-app>
 </template>
@@ -25,12 +26,14 @@
 <script>
 import HelloWorld from './components/HelloWorld'
 import LeaderBoard from './components/LeaderBoard'
+import quiz from './components/quiz.vue'
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    LeaderBoard
+    LeaderBoard,
+    quiz,
   },
   data () {
     return {

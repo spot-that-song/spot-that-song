@@ -16,18 +16,21 @@
     </v-toolbar>
 
     <v-content>
-      <HelloWorld/>
+      <!-- <HelloWorld/> -->
+      <LeaderBoard />
     </v-content>
   </v-app>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import LeaderBoard from './components/LeaderBoard'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    LeaderBoard
   },
   data () {
     return {

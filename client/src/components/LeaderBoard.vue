@@ -25,8 +25,7 @@ function generateScores (n) {
         name: faker.name.firstName(),
         avatar: faker.image.avatar()
       },
-      score: faker.random.number(),
-      show: true
+      score: faker.random.number()
     })
   )
 }
@@ -39,7 +38,21 @@ export default {
     scores: []
   }),
   created: function () {
-    this.scores = generateScores(5)
+    // this.fetchScores()
+    this.scores = generateScores(6)
+  },
+  methods: {
+    fetchScores: function () {
+      db
+        .collection('scores')
+        .onSnapshot(function (querySnapshot) {
+          this.scores = querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            player: doc.get('player'),
+            score: doc.get('score')
+          }))
+        })
+    }
   }
 }
 </script>

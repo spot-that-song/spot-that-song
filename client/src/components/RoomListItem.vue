@@ -2,8 +2,8 @@
   <div>
     <v-divider v-if="index !== 0"></v-divider>
     <v-layout row align-center>
-      <v-flex text-no-wrap pr-4 xs2>Room {{index + 1}}</v-flex>
-      <v-flex text-no-wrap pr-4 xs2>{{players.length}}/2</v-flex>
+      <v-flex text-no-wrap pr-4 xs2>Room {{index+1}}</v-flex>
+      <!-- <v-flex text-no-wrap pr-4 xs2>3/5</v-flex> -->
       <v-flex grow>
         <template v-for="player in players">
           <v-chip :key="player.id">

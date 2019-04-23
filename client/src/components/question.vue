@@ -52,13 +52,18 @@ export default {
     },
     playSound: function(sound) {
       if(sound) {
+        // console.log({sound})
         this.audio = new Audio(sound);
+        // console.log(this.audio)
         this.audio.play();
       }
       setTimeout(() => {
         this.clicked = true;
-      }, 3000);
+      }, 500);
     },
+  },
+  mounted() {
+    console.log(this.question)
   }
 };
 </script>

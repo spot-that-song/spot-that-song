@@ -5,7 +5,7 @@
         <RoomListItem :key="room.id" :index="index" :players="room.players" :RoomID="room.id"/>
       </template>
       <div class="my-4"></div>
-      <v-btn block large color="primary">
+      <v-btn block large color="primary" @click="addRoom">
         <v-icon>add</v-icon>New Room
       </v-btn>
     </v-container>
@@ -16,6 +16,7 @@
 import faker from "faker";
 import { mapState } from "vuex";
 import RoomListItem from "./RoomListItem";
+import db from '../main.js';
 
 // function generatePlayers(n) {
 //   return Array.from(Array(n), el => ({
@@ -42,7 +43,23 @@ export default {
   created: function() {
     // this.rooms = generateRooms(5);
   },
-  computed: mapState(["rooms"])
+  computed: mapState(["rooms"]),
+  methods: {
+    addRoom() {
+      db.collection('rooms')
+        .add({
+          leaderboard: [],
+          players: [],
+        })
+      .then((docref) => {
+        console.log({docref, dari:'roomlist'})
+        this.$store.dispatch('getRooms')
+      })
+      .catch((err) => {
+        console.log({err, dari: 'roomlist'})
+      })
+    }
+  }
 };
 </script>
 

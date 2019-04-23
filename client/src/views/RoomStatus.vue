@@ -52,7 +52,8 @@ export default {
           players = players.filter(player => {
             return player.ready != true;
           });
-          if (!players.length) this.$router.push("/quiz");
+          console.log(players.length)
+          if (players.length < 1) this.$router.push(`/quiz/${this.$route.params.RoomID}`);
           else this.allReady = false;
         });
     },

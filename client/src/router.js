@@ -34,9 +34,9 @@ const router = new Router({
             component: Login
         },
         {
-            path: '/quiz',
+            path: '/quiz/:RoomID',
             name: 'quiz',
-            component: quiz
+            component: Quiz
         },
         {
             path: '/dashboard',

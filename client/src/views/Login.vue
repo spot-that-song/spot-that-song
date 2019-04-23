@@ -90,7 +90,7 @@ export default {
         .signInWithPopup(provider)
         .then(result => {
           swal("You are now connected via Google!", "", "success");
-          this.$store.dispatch("login");
+          this.$store.dispatch("login", result);
           this.$router.replace("/dashboard");
         })
         .catch(err => {
@@ -105,7 +105,7 @@ export default {
         .signInWithPopup(provider)
         .then(result => {
           swal("You are now connected via Github!", "", "success");
-          this.$store.dispatch("login");
+          this.$store.dispatch("login", result);
           this.$router.replace("/dashboard");
         })
         .catch(err => {

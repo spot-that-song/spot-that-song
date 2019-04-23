@@ -41,6 +41,7 @@
 import fs from "fs";
 import question from "./question.vue";
 import questions from "../question.js";
+import db from '../main.js';
 
 let arr = questions.questions;
 // console.log(arr)
@@ -78,12 +79,14 @@ export default {
       }
     });
     arr.forEach((item, index) => {
-      let switchIdx = Math.round(Math.random() * arr.length)
+      let switchIdx = Math.round(Math.random() * (arr.length-1))
       if(switchIdx !== index) {
         [arr[index], arr[switchIdx]] = [arr[switchIdx],arr[index]];
+        // console.log(index, switchIdx)
+        // console.log(arr)
       }
     })
-    this.questions = arr;
+    this.questions = [...arr];
     this.introStage = true;
   },
   methods: {
@@ -108,13 +111,40 @@ export default {
       }
     },
     handleResults() {
-      // console.log("handle results");
       this.questions.forEach((a, index) => {
-        // console.log((arr[index].title === this.answers[index]) ? 'Betul' : 'Salah' )
         if (arr[index].title === this.answers[index]) this.correct++;
       });
       this.perc = ((this.correct / this.questions.length) * 100).toFixed(0);
-      // console.log(this.correct + " " + this.perc);
+      db.collection('rooms')
+        .doc(this.$route.params.RoomID)
+        .get()
+        .then(docref => {
+          let {players} = docref.data()
+          // console.log({data})
+          let newData = players.find(item => {
+            return item.playerId === this.$store.state['UserId']
+          })
+          console.log(newData)
+          newData.score = Number(this.perc)
+          console.log(newData)
+          return db.collection('rooms')
+            .doc(this.$route.params.RoomID)
+            .set({players:newData}, {merge: true})
+        })
+        .then(success => {
+          console.log('sukses')
+          return db.collection('rooms').doc(this.$route.params.RoomID).get()
+        })
+        .then(room => {
+          let {players} = room.data()
+          let scores = []
+          players.forEach(item => {
+            // item.score
+          })
+        })
+        .catch(err => {
+          console.log('error', err)
+        })
     },
     reset() {
       this.perc = null;

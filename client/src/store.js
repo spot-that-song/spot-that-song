@@ -28,8 +28,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    login({ commit }, payload) {
+    login({ commit, dispatch }, payload) {
       commit('login', payload)
+      dispatch('getRooms')
     },
     getRooms({ commit }) {
       db

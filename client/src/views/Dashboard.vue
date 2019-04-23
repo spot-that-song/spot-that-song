@@ -1,19 +1,18 @@
 <template>
-  <div>
-    <!-- TESTING -->
-    <v-btn color="success" v-on:click="joinRoom">JOIN ROOM</v-btn>
-    <h5>{{userEmail}}</h5>
-    <!-- END OF TESTING -->
-  </div>
+  <RoomList/>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import db from "../main.js";
 import swal from "sweetalert";
+import RoomList from "../components/RoomList";
 
 export default {
-  computed: mapState(["UserId", "userEmail"]),
+  computed: mapState(["UserId", "userEmail", "rooms"]),
+  components: {
+    RoomList
+  },
   methods: {
     joinRoom() {
       let newPlayer = {

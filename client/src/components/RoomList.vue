@@ -2,57 +2,49 @@
   <v-sheet elevation="1">
     <v-container>
       <template v-for="(room, index) in rooms">
-        <RoomListItem
-          :key="room.id"
-          :index="index"
-          :players="room.players"
-        />
+        <RoomListItem :key="room.id" :index="index" :players="room.players" :RoomID="room.id"/>
       </template>
       <div class="my-4"></div>
-      <v-btn block large color="primary"><v-icon>add</v-icon> New Room</v-btn>
+      <v-btn block large color="primary">
+        <v-icon>add</v-icon>New Room
+      </v-btn>
     </v-container>
   </v-sheet>
 </template>
 
 <script>
-import faker from 'faker'
+import faker from "faker";
+import { mapState } from "vuex";
+import RoomListItem from "./RoomListItem";
 
-import RoomListItem from './RoomListItem'
+// function generatePlayers(n) {
+//   return Array.from(Array(n), el => ({
+//     id: faker.random.uuid(),
+//     name: faker.name.firstName(),
+//     avatar: faker.image.avatar()
+//   }));
+// }
 
-function generatePlayers (n) {
-  return Array.from(
-    Array(n),
-    el => ({
-      id: faker.random.uuid(),
-      name: faker.name.firstName(),
-      avatar: faker.image.avatar()
-    })
-  )
-}
-
-function generateRooms (n) {
-  return Array.from(
-    Array(n),
-    el => ({
-      id: faker.random.uuid(),
-      players: generatePlayers(Math.floor(Math.random() * 5))
-    })
-  )
-}
+// function generateRooms(n) {
+//   return Array.from(Array(n), el => ({
+//     id: faker.random.uuid(),
+//     players: generatePlayers(Math.floor(Math.random() * 5))
+//   }));
+// }
 
 export default {
   components: {
     RoomListItem
   },
   data: () => ({
-    rooms: []
+    // rooms: []
   }),
-  created: function () {
-    this.rooms = generateRooms(5)
-  }
-}
+  created: function() {
+    // this.rooms = generateRooms(5);
+  },
+  computed: mapState(["rooms"])
+};
 </script>
 
 <style>
-
 </style>

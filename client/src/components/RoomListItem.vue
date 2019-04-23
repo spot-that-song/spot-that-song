@@ -14,19 +14,54 @@
           </v-chip>
         </template>
       </v-flex>
-      <v-flex shrink>
-        <v-btn medium>Join</v-btn>
+      <v-flex shrink v-on:click="joinRoom">
+        <v-btn medium>JOIN</v-btn>
       </v-flex>
     </v-layout>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import db from "../main.js";
+import swal from "sweetalert";
 export default {
-  props: ['index', 'players']
-}
+  props: ["index", "players", "RoomID"],
+  computed: mapState(["UserId", "userEmail", "rooms"]),
+  methods: {
+    joinRoom() {
+      let newPlayer = {
+        playerId: this.UserId,
+        position: 0,
+        ready: false,
+        score: 0
+      };
+      db.collection("rooms")
+        .doc(this.RoomID)
+        .get()
+        .then(docref => {
+          let { players } = docref.data();
+          players.push(newPlayer);
+          return db
+            .collection("rooms")
+            .doc(this.RoomID)
+            .set({ players }, { merge: true });
+        })
+        .then(() => {
+          swal(
+            "Welcome!",
+            "Please wait until there are enough players..",
+            "success"
+          );
+          this.$router.replace(`/dashboard/lobby/${this.RoomID}`);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }
+};
 </script>
 
 <style>
-
 </style>

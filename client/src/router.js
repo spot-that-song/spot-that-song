@@ -5,6 +5,8 @@ import Register from './views/Register.vue'
 import Login from './views/Login.vue'
 import Dashboard from './views/Dashboard.vue'
 import firebase from 'firebase'
+import RoomStatus from './views/RoomStatus.vue'
+import Quiz from './views/Quiz.vue'
 
 Vue.use(Router)
 
@@ -37,7 +39,19 @@ const router = new Router({
             component: Dashboard,
             meta: {
                 requiresAuth: true
-            }
+            },
+            children: [
+                {
+                    path: 'lobby/:RoomID',
+                    name: 'Lobby',
+                    component: RoomStatus
+                }
+            ]
+        },
+        {
+            path: '/quiz',
+            name: 'Quiz',
+            component: Quiz
         }
     ]
 })

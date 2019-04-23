@@ -35,8 +35,8 @@
       <!-- <HelloWorld/> -->
       <!-- <LeaderBoard /> -->
       <router-view></router-view>
-      <LeaderBoard/>
-      <quiz/>
+      <!-- <LeaderBoard/> -->
+      <!-- <quiz/> -->
     </v-content>
   </v-app>
 </template>

@@ -36,7 +36,8 @@
       <!-- <LeaderBoard /> -->
       <router-view></router-view>
       <LeaderBoard/>
-      <quiz/>
+      <!-- <quiz/> -->
+      <router-link to="/quiz">main</router-link>
     </v-content>
   </v-app>
 </template>

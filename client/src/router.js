@@ -5,6 +5,7 @@ import Register from './views/Register.vue'
 import Login from './views/Login.vue'
 import Dashboard from './views/Dashboard.vue'
 import firebase from 'firebase'
+import quiz from './components/quiz.vue'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ const router = new Router({
             path: '/login',
             name: 'Login',
             component: Login
+        },
+        {
+            path: '/quiz',
+            name: 'quiz',
+            component: quiz
         },
         {
             path: '/dashboard',

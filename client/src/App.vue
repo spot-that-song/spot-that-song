@@ -35,7 +35,7 @@
       <!-- <HelloWorld/> -->
       <!-- <LeaderBoard /> -->
       <router-view></router-view>
-      <LeaderBoard />
+      <LeaderBoard/>
       <quiz/>
     </v-content>
   </v-app>
@@ -44,17 +44,18 @@
 <script>
 import HelloWorld from "./components/HelloWorld";
 import LeaderBoard from "./components/LeaderBoard";
-import quiz from './components/quiz.vue';
+import quiz from "./components/quiz.vue";
 import swal from "sweetalert";
 import firebase from "firebase";
 import { mapState } from "vuex";
+import db from "./main.js";
 
 export default {
   name: "App",
   components: {
     HelloWorld,
     LeaderBoard,
-    quiz,
+    quiz
   },
   data() {
     return {
@@ -71,7 +72,7 @@ export default {
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
           // User is signed in.
-          this.$store.dispatch("login");
+          this.$store.dispatch("login", user);
         } else {
           // No user is signed in.
           this.$store.commit("logout");

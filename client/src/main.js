@@ -8,6 +8,7 @@ import firebase from 'firebase'
 import config from './firebase'
 
 firebase.initializeApp(config);
+const db = firebase.firestore()
 
 Vue.config.productionTip = false
 
@@ -22,3 +23,5 @@ firebase.auth().onAuthStateChanged(() => {
     }).$mount('#app')
   }
 })
+
+export default db

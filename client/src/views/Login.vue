@@ -72,9 +72,10 @@ export default {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
-        .then(user => {
+        .then(({ user }) => {
           swal("You are now connected!", "", "success");
-          this.$store.dispatch("login");
+          this.$store.dispatch("login", user);
+          this.$store.dispatch("getRooms");
           this.$router.replace("/dashboard");
         })
         .catch(err => {

@@ -101,6 +101,22 @@ let questions = [
   }
 ]
 
+// let players = {
+//   playerId: '',
+//   email: '',
+//   password: '',
+//   position: 0,
+//   ready: false,
+// }
+
+// let rooms = [
+//   {
+//     roomId: '',
+//     players: [{player1}, {player2}],
+//     leaderboard: [{player1}, {player2}],
+//   },
+// ]
+
 export default {
   questions
 }

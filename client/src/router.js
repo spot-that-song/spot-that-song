@@ -34,6 +34,11 @@ const router = new Router({
             component: Login
         },
         {
+            path: '/quiz',
+            name: 'quiz',
+            component: quiz
+        },
+        {
             path: '/dashboard',
             name: 'Dashboard',
             component: Dashboard,

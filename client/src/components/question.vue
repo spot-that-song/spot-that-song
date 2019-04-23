@@ -59,7 +59,7 @@ export default {
       }
       setTimeout(() => {
         this.clicked = true;
-      }, 500);
+      }, 3000);
     },
   },
   mounted() {

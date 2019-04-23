@@ -6,7 +6,7 @@ import Login from './views/Login.vue'
 import Dashboard from './views/Dashboard.vue'
 import firebase from 'firebase'
 import RoomStatus from './views/RoomStatus.vue'
-import Quiz from './views/Quiz.vue'
+import quiz from './components/quiz.vue'
 
 Vue.use(Router)
 
@@ -53,11 +53,11 @@ const router = new Router({
                 }
             ]
         },
-        {
-            path: '/quiz',
-            name: 'Quiz',
-            component: Quiz
-        }
+        // {
+        //     path: '/quiz',
+        //     name: 'Quiz',
+        //     component: Quiz
+        // }
     ]
 })
 

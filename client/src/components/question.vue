@@ -1,25 +1,19 @@
 <template>
   <div>
-    <v-card>
-      <v-responsive :aspect-ratio="16/9" style="padding: 20px;">
-        <v-card-text>
-          <strong>Question {{ questionNumber }}:</strong><br>
-          <strong>What song is this?</strong>
-        </v-card-text>
+    <div style="display: flex; justify-content: center;">
+      <div style="">
+        <div v-if="!clicked">
+          <v-card-text style="text-align: center;">
+            <strong>Question {{ questionNumber }}:</strong><br>
+            <strong>What song is this?</strong>
+          </v-card-text>
+          <div style="display:flex; justify-content: center;">
+            <v-btn @click.prevent="playSound(question.audioUrl)" color="info">Play</v-btn>
+          </div>
+        </div>
         <br>
-        <!-- <audio :src="question.audioUrl" controls></audio> -->
-        <v-btn @click.prevent="playSound(question.audioUrl)" color="info">Play</v-btn>
-
         <div v-if="clicked">
           <div v-for="(answers, index) in question.answers" :key="index">
-            <!-- <input
-          type="radio"
-          :id="'answer'+index"
-          name="currentQuestion"
-          v-model="answer"
-          :value="answers"
-        >
-            <label :for="'answer'+index">{{answers}}</label>-->
             <v-btn large block
               :id="'answer'+index"
               :for="'answer'+index"
@@ -28,16 +22,12 @@
               :value="answers"
               @click="submitAnswer(answers)"
             >{{answers}}</v-btn>
-            <!-- <v-radio-group v-model="answer" row>
-          <v-radio :label="answers" :value="answers"></v-radio>
-            </v-radio-group>-->
             <br>
           </div>
         </div>
+      </div>
+    </div>
 
-        <!-- <v-btn color="info" @click="submitAnswer('answer')">Answer</v-btn> -->
-      </v-responsive>
-    </v-card>
   </div>
 </template>
 
